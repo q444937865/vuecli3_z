@@ -10,11 +10,13 @@
         :width="item.width"
       >
         <template slot-scope="scope">
-          <span :class="'t-dot '+(scope.row[`check${i}`]?'bc-green':'bc-red')" @click="showdata(scope)"></span>
+          <span :class="'t-dot '+(scope.row[item.prop]?'bc-green':'bc-red')" :style="`background-color:${scope.row[item.prop]}`" @click="showdata(scope)"></span>
         </template>
       </el-table-column>
       <el-table-column fixed="right" prop="process" label width="180">
-        <Zprocess :percent="50"/>
+        <template slot-scope="scope">
+          <Zprocess :percent="scope.row.percent||0"/>
+        </template>
       </el-table-column>
     </el-table>
   </div>
